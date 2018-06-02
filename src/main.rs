@@ -1,4 +1,5 @@
 use std::io::{self, Write};
+mod parser;
 
 fn main() {
     println!("Lispr Version 0.1.0");
@@ -15,5 +16,12 @@ fn main() {
             .expect("Failed to read line");
 
         println!("{}", input);
+        let t = parser::parse_string(&input);
+        match t {
+            Some(value) => println!("{}", value.value),
+            None => println!("Not a token.")
+        }
+                
+            
     }
 }
